@@ -15,7 +15,7 @@ public class VentanaAhorcado extends javax.swing.JFrame {
     //ESTE METODO RECIBE EL BOTON QUE HA SIDO PULSADO
     //Y PROCESA LA LETRA QUE TIENE EN SU ETIQUETA
     private void chequeaBoton(JButton boton){
-        System.out.println("BOTON PULSADO");
+        boton.setEnabled(false);
     }
     /**
      * Creates new form VentanaAhorcado
