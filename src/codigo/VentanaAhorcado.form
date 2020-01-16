@@ -118,10 +118,10 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
               <Component id="muñeco" min="-2" pref="230" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -130,9 +130,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="palabra" min="-2" pref="81" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="muñeco" min="-2" pref="230" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="muñeco" min="-2" pref="230" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="letraA" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                   <Component id="letraB" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
@@ -157,17 +157,19 @@
                   <Component id="letraQ" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="letraR" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
-                  <Component id="letraS" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
-                  <Component id="letraT" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
-                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="letraU" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                       <Component id="letraV" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                       <Component id="letraW" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                       <Component id="letraX" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                       <Component id="letraY" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                       <Component id="letraZ" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="letraR" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                      <Component id="letraS" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                      <Component id="letraT" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>

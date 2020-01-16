@@ -5,6 +5,8 @@
  */
 package codigo;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 /**
@@ -12,17 +14,63 @@ import javax.swing.JButton;
  * @author Sarita
  */
 public class VentanaAhorcado extends javax.swing.JFrame {
-    //ESTE METODO RECIBE EL BOTON QUE HA SIDO PULSADO
-    //Y PROCESA LA LETRA QUE TIENE EN SU ETIQUETA
+    int numeroDeFallos =0; //ESTA VARIABLE GUARDA CUANTOS FALLOS LLEVO EN EL JUEGO
+
+    String palabraOculta ="CETYS";
+    
+    public VentanaAhorcado() {
+        initComponents();
+        dibujaImagen();
+    }
     private void chequeaBoton(JButton boton){
-        boton.setEnabled(false);
+        boton.setEnabled(false);//ESTE METODO RECIBE EL BOTON QUE HA SIDO PULSADO
+    //Y PROCESA LA LETRA QUE TIENE EN SU ETIQUETA
+     chequeaLetra(boton.getText());
+}
+    private void chequeaLetra(String letra){
+        
+        if(palabraOculta.contains(letra)){
+            //EN ESTE CASO ACIERTA 
+            //HAY QUE HACER QUE SE CAMBIEN LAS LETRAS POR LOS GUIONES
+            String palabraConGuiones = palabra.getText();
+            char letraPulsada = letra.charAt(0);
+            for (int i=0;i<palabraOculta.length(); i++){
+                if(palabraOculta.charAt(i) == letraPulsada){
+                    palabraConGuiones = palabraConGuiones.substring(0,2*i)
+                            + letra + palabraConGuiones.substring(2*i+1);
+                }
+            }
+            palabra.setText(palabraConGuiones);
+        }
+        else{
+            numeroDeFallos ++;
+            dibujaImagen();
+        }
+    }
+    private void dibujaImagen(){
+        //CAMBIA LA IMAGEN EN FUNCION DE CUANTOS FALLOS LLEVAMOS
+        String nombreImagen ="";
+        switch (numeroDeFallos){ //VARIOS CASOS DE IF Y ELSE
+        case 0:nombreImagen = "/imagenes/ahorcado_0.png"; break; //BREAK ES PARAR
+        case 1:nombreImagen = "/imagenes/ahorcado_1png"; break;
+        case 2:nombreImagen = "/imagenes/ahorcado_2.png"; break;
+        case 3:nombreImagen = "/imagenes/ahorcado_3.png"; break;
+        case 4:nombreImagen = "/imagenes/ahorcado_4.png"; break;
+        case 5:nombreImagen = "/imagenes/ahorcado_5.png"; break;
+        default: nombreImagen = "/imagenes/ahorcado_fin.png"; break;
+        //CUANDO NINGUNO DE ESOS CASOS SE CUMPLE SE VA A PONER POR DEFECTO EL DEFAULT
+        }
+        ImageIcon miImagen = new ImageIcon(
+                new ImageIcon(getClass().getResource(nombreImagen))
+                .getImage()
+                .getScaledInstance(muñeco.getWidth(), muñeco.getHeight(), Image.SCALE_DEFAULT)
+        );
+        muñeco.setIcon(miImagen); //CARGO LA IMAGEN EN EL JLABEL QUE MUESTRA QUE FALLO LLEVAMOS
     }
     /**
      * Creates new form VentanaAhorcado
      */
-    public VentanaAhorcado() {
-        initComponents();
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -479,19 +527,19 @@ public class VentanaAhorcado extends javax.swing.JFrame {
                                 .addComponent(letraI, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(182, 182, 182)
                 .addComponent(muñeco, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(162, 162, 162))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(palabra, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(muñeco, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(muñeco, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(letraA, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(letraB, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -514,17 +562,18 @@ public class VentanaAhorcado extends javax.swing.JFrame {
                     .addComponent(letraP, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(letraQ, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(letraR, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(letraS, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(letraT, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(letraU, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(letraV, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(letraW, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(letraX, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(letraY, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(letraZ, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(letraZ, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(letraR, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(letraS, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(letraT, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
