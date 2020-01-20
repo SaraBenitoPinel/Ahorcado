@@ -6,6 +6,7 @@
 package codigo;
 
 import java.awt.Image;
+import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -15,24 +16,36 @@ import javax.swing.JButton;
  */
 public class VentanaAhorcado extends javax.swing.JFrame {
     int numeroDeFallos =0; //ESTA VARIABLE GUARDA CUANTOS FALLOS LLEVO EN EL JUEGO
-
-    String palabraOculta ="CETYS";
+    boolean partidaterminada = false; //INDICA SI LA PARTIDA HA TERMINADO
+    String palabraOculta =eligePalabra();
     
     public VentanaAhorcado() {
         initComponents();
         dibujaImagen();
+        String auxiliar = "";
+        for (int i=0; i<palabraOculta.length(); i++){
+            auxiliar = auxiliar +"_ ";
+        }
+        palabra.setText(auxiliar);
+    }
+    private String eligePalabra(){
+        String [] listaPalabras ={"CETYS", "hola", "RUBEN", "SARA"};
+        Random aleatorio = new Random(); //VARIABLE PARA ELEGIR UNA PALABRA AL AZAR
+        int posicion =aleatorio.nextInt(listaPalabras.length);
+        return listaPalabras[posicion].toUpperCase();
     }
     private void chequeaBoton(JButton boton){
+        if (!partidaterminada){
         boton.setEnabled(false);//ESTE METODO RECIBE EL BOTON QUE HA SIDO PULSADO
     //Y PROCESA LA LETRA QUE TIENE EN SU ETIQUETA
      chequeaLetra(boton.getText());
 }
+    }
     private void chequeaLetra(String letra){
-        
+        String palabraConGuiones = palabra.getText();
         if(palabraOculta.contains(letra)){
             //EN ESTE CASO ACIERTA 
             //HAY QUE HACER QUE SE CAMBIEN LAS LETRAS POR LOS GUIONES
-            String palabraConGuiones = palabra.getText();
             char letraPulsada = letra.charAt(0);
             for (int i=0;i<palabraOculta.length(); i++){
                 if(palabraOculta.charAt(i) == letraPulsada){
@@ -41,9 +54,17 @@ public class VentanaAhorcado extends javax.swing.JFrame {
                 }
             }
             palabra.setText(palabraConGuiones);
+            if(!palabraConGuiones.contains("_")){
+               numeroDeFallos=-1;
+               dibujaImagen(); 
+               partidaterminada =true;
+            }
         }
         else{
             numeroDeFallos ++;
+            if (numeroDeFallos == 6){
+                partidaterminada=true;
+            }
             dibujaImagen();
         }
     }
@@ -51,6 +72,7 @@ public class VentanaAhorcado extends javax.swing.JFrame {
         //CAMBIA LA IMAGEN EN FUNCION DE CUANTOS FALLOS LLEVAMOS
         String nombreImagen ="";
         switch (numeroDeFallos){ //VARIOS CASOS DE IF Y ELSE
+        case -1: nombreImagen = "/imagenes/acertasteTodo.png"; break;
         case 0:nombreImagen = "/imagenes/ahorcado_0.png"; break; //BREAK ES PARAR
         case 1:nombreImagen = "/imagenes/ahorcado_1png"; break;
         case 2:nombreImagen = "/imagenes/ahorcado_2.png"; break;
